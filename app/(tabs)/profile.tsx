@@ -1,10 +1,11 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import { images } from "@/constants/images";
+import React from 'react';
+import { Image, View } from 'react-native';
 
 const Profile = () => {
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-xl">Profile Screen</Text>
+    <View className="flex-1 items-center bg-[#0f0D23]">
+      <Image source={images.bg}/>
     </View>
   )
 }
