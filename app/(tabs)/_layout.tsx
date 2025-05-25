@@ -1,25 +1,22 @@
 import { icons } from '@/constants/icons'
-import { images } from '@/constants/images'
 import { Tabs } from 'expo-router'
 import React from 'react'
-import { Image, ImageBackground, Text, View } from 'react-native'
+import { Image, View } from 'react-native'
 
 const TabContainer = ({ focused, icon, title } : any) => {
   if (focused) {
     return (
-      <ImageBackground
-        source={images.highlight}
-        className="flex-row items-center px-6 py-3 rounded-full overflow-hidden min-w-[130px] min-h-[45px] justify-center gap-2 shadow-lg"
-        imageStyle={{ borderRadius: 999 }}
-      >
-        <Image source={icon} className="w-[20px] h-[20px]" style={{ tintColor: '#000' }} />
-        <Text className="text-sm text-black font-bold">{title}</Text>
-      </ImageBackground>
+      <View className="items-center">
+        <View className="flex-row items-center justify-center gap-2">
+          <Image source={icon} className="w-[24px] h-[24px]" style={{ tintColor: '#fff' }} />
+        </View>
+        <View className="h-1 w-1 bg-white rounded-full mt-2" />
+      </View>
     )
   } else {
     return (
-      <View className="items-center justify-center p-3 rounded-full bg-[#1a1a2f]">
-        <Image source={icon} className="w-[20px] h-[20px]" style={{ tintColor: '#666' }} />
+      <View className="items-center justify-center">
+        <Image source={icon} className="w-[20px] h-[20px]" style={{ tintColor: 'rgba(255,255,255,0.5)' }} />
       </View>
     )
   }
@@ -36,22 +33,14 @@ const TabLayout = () => {
         alignItems: 'center',
       },
       tabBarStyle: {
-        backgroundColor: '#0f0D23',
-        borderRadius: 30,
-        height: 50,
+        backgroundColor: 'transparent',
+        height: 60,
         marginBottom: 20,
-        marginHorizontal: 20,
+        marginHorizontal: 50,
         paddingHorizontal: 15,
         position: 'absolute',
         borderTopWidth: 0,
-        elevation: 10,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 5,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
+        elevation: 0,
       },
     }}>
       <Tabs.Screen

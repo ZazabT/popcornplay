@@ -1,13 +1,18 @@
+import SearchInput from "@/components/searchInput";
 import { icons } from "@/constants/icons";
-import { images } from "@/constants/images";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
+import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 export default function Index() {
   return (
-    <View className="flex-1 bg-[#0f0D23]">
-      <Image source={images.bg} className="absolute w-full h-full" resizeMode="cover"/>
-      
+    <View className="flex-1">
+      <LinearGradient
+        colors={['#0f0D23', '#0f0D23']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        className="absolute w-full h-full opacity-95"
+      />
+
       <SafeAreaView className="flex-1">
         <ScrollView 
           className="flex-1 px-5" 
@@ -15,11 +20,8 @@ export default function Index() {
           contentContainerStyle={{paddingBottom: 100}}
         >
           {/* Header */}
-          <View className="flex-row items-center justify-between mt-4">
+          <View className="flex-row items-center justify-center mt-10">
             <Image source={icons.logo} className="w-12 h-10"/>
-            <TouchableOpacity>
-              <Image source={icons.arrow} className="w-6 h-6" tintColor="#fff"/>
-            </TouchableOpacity>
           </View>
 
           {/* Welcome Text */}
@@ -29,11 +31,7 @@ export default function Index() {
           </View>
 
           {/* Search Bar */}
-          <TouchableOpacity className="flex-row items-center bg-[#ffffff15] mt-8 p-4 rounded-2xl">
-            <Image source={icons.search} className="w-5 h-5" tintColor="#666"/>
-            <Text className="text-gray-400 ml-3">Search movies, series...</Text>
-          </TouchableOpacity>
-
+          <SearchInput/>
           {/* Categories */}
           <View className="mt-8">
             <Text className="text-white text-xl font-semibold mb-4">Categories</Text>
