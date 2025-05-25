@@ -1,7 +1,6 @@
 import SearchInput from "@/components/searchInput";
-import { icons } from "@/constants/icons";
 import { LinearGradient } from 'expo-linear-gradient';
-import { Image, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 export default function Index() {
   return (
@@ -20,9 +19,9 @@ export default function Index() {
           contentContainerStyle={{paddingBottom: 100}}
         >
           {/* Header */}
-          <View className="flex-row items-center justify-center mt-10">
+          {/* <View className="flex-row items-center justify-center mt-10">
             <Image source={icons.logo} className="w-12 h-10"/>
-          </View>
+          </View> */}
 
           {/* Welcome Text */}
           <View className="mt-8">
@@ -31,18 +30,20 @@ export default function Index() {
           </View>
 
           {/* Search Bar */}
-          <SearchInput/>
-          {/* Categories */}
           <View className="mt-8">
-            <Text className="text-white text-xl font-semibold mb-4">Categories</Text>
-            {/* Add your categories here */}
+            <SearchInput/>
           </View>
+          {/* Categories */}
+          {/* <View className="mt-8">
+            <Text className="text-white text-xl font-semibold mb-4">Categories</Text>
+            
+          </View> */}
 
           {/* Trending Movies */}
-          <View className="mt-8">
+          {/* <View className="mt-8">
             <Text className="text-white text-xl font-semibold mb-4">Trending Now</Text>
-            {/* Add your movie list here */}
-          </View>
+           
+          </View> */}
         </ScrollView>
       </SafeAreaView>
     </View>
