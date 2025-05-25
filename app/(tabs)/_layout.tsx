@@ -33,7 +33,8 @@ const TabLayout = () => {
         alignItems: 'center',
       },
       tabBarStyle: {
-        backgroundColor: 'transparent',
+        backgroundColor: '#0f0D23',
+        backdropFilter: 'blur(50px)',
         height: 60,
         marginBottom: 20,
         marginHorizontal: 50,
@@ -41,7 +42,9 @@ const TabLayout = () => {
         position: 'absolute',
         borderTopWidth: 0,
         elevation: 0,
+        borderRadius: 20,
       },
+ 
     }}>
       <Tabs.Screen
         name="index"
