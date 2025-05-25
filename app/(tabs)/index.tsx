@@ -33,7 +33,7 @@ export default function Index() {
           </View> */}
 
           {/* Welcome Text */}
-          <View className="mt-8">
+          <View className="mt-8 items-center">
             <Text className="text-white text-3xl font-bold">Welcome Back!</Text>
             <Text className="text-gray-400 mt-2">Explore your favorite movies and series</Text>
           </View>
@@ -78,6 +78,7 @@ export default function Index() {
                     numColumns={3}
                     columnWrapperStyle={{
                       justifyContent : 'flex-start'
+
                     }}
                     renderItem={({ item }) => (
                      <MovieCard {...item}/>
