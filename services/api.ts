@@ -10,19 +10,20 @@ const apiConfig = {
 
 
 
-const fetchMovies = async ({ query }: { query: string }) => {
-
-    const endPoint = query ? `${apiConfig.BASE_URL}/search/movie?query=${encodeURIComponent(query)}` : `${apiConfig.BASE_URL}/discover/movie/sort_by=popularity.desc`;
-
+export const fetchMovies = async ({ query }: { query: string }) => {
+    const endPoint = query
+      ? `${apiConfig.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+      : `${apiConfig.BASE_URL}/discover/movie?sort_by=popularity.desc`;
+  
     const response = await fetch(endPoint, {
-        headers: apiConfig.headers,
+      headers: apiConfig.headers,
     });
-
+  
     if (!response.ok) {
-        //@ts-ignore
-        throw new Error('Failed to fetch movies', response.statusText);
+      throw new Error(`Failed to fetch movies: ${response.status} ${response.statusText}`);
     }
-
+  
     const data = await response.json();
     return data.results;
-}
+  };
+  
