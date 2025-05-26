@@ -4,7 +4,8 @@ import TvCard from '@/components/tvCard';
 import { fetchMovies, fetchTvShows } from "@/services/api";
 import useFetch from "@/services/useFetch";
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from "react";
+import { useRouter } from "expo-router";
+import React, { useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -17,12 +18,83 @@ export default function Index() {
   const [showAllMovies, setShowAllMovies] = useState(false);
   const [showAllTv, setShowAllTv] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const displayedMovies = showAllMovies ? movies : movies?.slice(0, 9);
   const displayedTvShows = showAllTv ? tvShows : tvShows?.slice(0, 4);
 
+  const router = useRouter();
+
+  // Memoize the ListHeaderComponent
+  const ListHeader = useMemo(() => (
+    <>
+      {/* User Info */}
+      <View className="mt-8 flex-row items-center justify-between">
+        <View>
+          <Text className="text-gray-400 text-sm font-medium">Welcome back</Text>
+          <Text className="text-white text-2xl font-bold mt-1">Hello, Tizazab</Text>
+        </View>
+        <TouchableOpacity>
+          <View className="items-center justify-center">
+            <View className="w-16 h-16 rounded-full p-[1.5px]">
+              <View className="w-full h-full rounded-full bg-[#1A0012] items-center justify-center border-2 border-[#1A0012]">
+                <View className="w-full h-full rounded-full overflow-hidden">
+                  <LinearGradient
+                    colors={['#FF1B6B', '#7209B7']}
+                    className="w-full h-full items-center justify-center"
+                  >
+                    <Text className="text-white text-xl font-bold">T</Text>
+                  </LinearGradient>
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {/* Search */}
+      <View className="mt-8">
+        <SearchInput
+        onpress={() => router.push('/search')}
+        />
+      </View>
+
+      {/* Categories */}
+      <View className="mt-8">
+        <View className="flex-row items-center justify-between">
+          <Text className="text-white text-xl font-semibold">Categories</Text>
+          <TouchableOpacity>
+            <Text className="text-gray-400 text-sm font-medium">See All</Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          className="mt-4"
+          contentContainerStyle={{ paddingRight: 20 }}
+        >
+          {categories.map((category) => (
+            <TouchableOpacity
+              key={category}
+              onPress={() => setActiveCategory(category)}
+              className={`px-6 py-3 rounded-full mr-3 ${activeCategory === category ? 'bg-white/30' : 'bg-white/10'}`}
+              activeOpacity={0.8}
+            >
+              <Text className="text-white font-semibold">{category}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Latest Movies */}
+      <View className="mt-8">
+        <Text className="text-white text-xl font-semibold mb-4">Latest Movies</Text>
+      </View>
+    </>
+  ), [activeCategory]); 
+
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1">
       <LinearGradient
         colors={['#1A0012', '#0A001F']}
         start={{ x: 0, y: 0 }}
@@ -57,72 +129,7 @@ export default function Index() {
             numColumns={3}
             columnWrapperStyle={{ justifyContent: 'flex-start' }}
             contentContainerStyle={{ paddingBottom: 120, paddingHorizontal: 20 }}
-            ListHeaderComponent={() => (
-              <>
-                {/* User Info */}
-                <View className="mt-8 flex-row items-center justify-between">
-                  <View>
-                    <Text className="text-gray-400 text-sm font-medium">Welcome back</Text>
-                    <Text className="text-white text-2xl font-bold mt-1">Hello, Tizazab</Text>
-                  </View>
-                  <TouchableOpacity
-                  >
-                    <View className="items-center justify-center">
-                      <View className="w-16 h-16 rounded-full p-[1.5px]">
-                        <View className="w-full h-full rounded-full bg-[#1A0012] items-center justify-center border-2 border-[#1A0012]">
-                          <View className="w-full h-full rounded-full overflow-hidden">
-                            <LinearGradient
-                              colors={['#FF1B6B', '#7209B7']}
-                              className="w-full h-full items-center justify-center"
-                            >
-                              <Text className="text-white text-xl font-bold">T</Text>
-                            </LinearGradient>
-                          </View>
-                        </View>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-
-                {/* Search */}
-                <View className="mt-8">
-                  <SearchInput />
-                </View>
-
-                {/* Categories */}
-                <View className="mt-8">
-                  <View className="flex-row items-center justify-between">
-                    <Text className="text-white text-xl font-semibold">Categories</Text>
-                    <TouchableOpacity>
-                      <Text className="text-gray-400 text-sm font-medium">See All</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    className="mt-4"
-                    contentContainerStyle={{ paddingRight: 20 }}
-                  >
-                    {categories.map((category) => (
-                      <TouchableOpacity
-                        key={category}
-                        onPress={() => setActiveCategory(category)}
-                        className={`px-6 py-3 rounded-full mr-3 ${activeCategory === category ? 'bg-white/30' : 'bg-white/10'
-                          }`}
-                        activeOpacity={0.8}
-                      >
-                        <Text className="text-white font-semibold">{category}</Text>
-                      </TouchableOpacity>
-                    ))}
-                  </ScrollView>
-                </View>
-
-                {/* Latest Movies */}
-                <View className="mt-8">
-                  <Text className="text-white text-xl font-semibold mb-4">Latest Movies</Text>
-                </View>
-              </>
-            )}
+            ListHeaderComponent={ListHeader}
             renderItem={({ item }) => <MovieCard {...item} />}
             ListFooterComponent={() => (
               <View>
@@ -155,7 +162,7 @@ export default function Index() {
                     {tvLoading ? (
                       <ActivityIndicator color="white" size="small" />
                     ) : (
-                      displayedTvShows?.map((show: any) => <TvCard key={show.id} {...show} />)
+                      displayedTvShows?.map((show : any) => <TvCard key={show.id} {...show} />)
                     )}
                   </ScrollView>
 

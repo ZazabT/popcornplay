@@ -49,11 +49,11 @@ export const fetchMovieDetails = async (movieId: number) => {
 }
 
 
-export const searrchAll = async (query: string) => {
+export const searchAll = async ( { query }: { query: string }) => {
   if (!query) return [];
 
   const endPoint = `${apiConfig.BASE_URL}/search/multi?query=${encodeURIComponent(query)}`;
-
+  console.log(endPoint)
   const response = await fetch(endPoint, {
     headers: apiConfig.headers,
   });
