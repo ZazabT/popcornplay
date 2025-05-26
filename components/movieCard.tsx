@@ -40,7 +40,7 @@ const MovieCard = ({
 
           <View className="flex-row items-center mt-0.5">
             <Text className="text-yellow-400 text-[10px] font-medium">
-              ⭐ {vote_average.toFixed(1) || 'N/A'}
+              ⭐ {vote_average.toFixed(1)}
             </Text>
             <Text className="text-gray-300 text-[10px] ml-1">({vote_count})</Text>
           </View>

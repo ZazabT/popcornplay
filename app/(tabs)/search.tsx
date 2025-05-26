@@ -17,11 +17,12 @@ const Search = () => {
       if (searchQuery.trim().length >= 1) {
         console.log('Searching for:', searchQuery);
         callApi();
+        
       } else {
         reset();
       }
     }, 800); // Increased debounce time for better performance
-
+    
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
 

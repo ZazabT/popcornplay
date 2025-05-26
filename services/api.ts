@@ -44,7 +44,18 @@ export const fetchTvShows = async ({ query }: { query: string }) => {
   return data.results;
 };
 
-export const fetchMovieDetails = async (movieId: number) => {
+export const fetchMovieDetails = async (movieId: string) => {
+  const endPoint =`${apiConfig.BASE_URL}/movie/${movieId}?language=en-US`
+  const response = await fetch(endPoint, {
+    headers: apiConfig.headers,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movie details: ${response.status} ${response.statusText}`); 
+  }
+
+  const data = await response.json();
+  return data;
   
 }
 
