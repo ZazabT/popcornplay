@@ -37,7 +37,7 @@ export default function Index() {
             <Text className="text-gray-400 text-sm text-center mt-2 px-4">
               {moviesError?.message || 'Unable to fetch movies at the moment'}
             </Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               className="mt-6 bg-white/10 px-8 py-3 rounded-full flex-row items-center"
               onPress={() => window.location.reload()}
             >
@@ -58,14 +58,41 @@ export default function Index() {
             }}
             ListHeaderComponent={() => (
               <>
-                <View className="mt-8 items-center">
-                  <Text className="text-white text-3xl font-bold">Welcome Back!</Text>
-                  <Text className="text-gray-400 mt-2">Explore your favorite movies and series</Text>
+
+                {/* User Profile Section */}
+                <View className='mt-8 flex-row items-center justify-between px-1'>
+                  {/* User Name and Greeting */}
+                  <View>
+                    <Text className="text-gray-400 text-sm font-medium">Welcome back</Text>
+                    <Text className="text-white text-2xl font-bold mt-1">Hello, Tizazab</Text>
+                  </View>
+
+                  {/* User Profile */}
+                  <TouchableOpacity
+                    className="active:opacity-80"
+                  >
+                    <View className="items-center justify-center">
+                      <View className="w-16 h-16 rounded-full p-[1.5px]">
+                        <View className="w-full h-full rounded-full bg-[#1A0012] items-center justify-center border-2 border-[#1A0012]">
+                          <View className="w-full h-full rounded-full overflow-hidden">
+                            <LinearGradient
+                              colors={['#FF1B6B', '#7209B7']}
+                              className="w-full h-full items-center justify-center"
+                            >
+                              <Text className="text-white text-xl font-bold">T</Text>
+                            </LinearGradient>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
                 </View>
+                {/* Search for your favorite movies and tv shows */}
                 <View className="mt-8">
                   <SearchInput />
                   <Text className="text-white text-xl font-semibold mb-4 mt-8">Latest Movies</Text>
                 </View>
+
               </>
             )}
             renderItem={({ item }) => <MovieCard {...item} />}
