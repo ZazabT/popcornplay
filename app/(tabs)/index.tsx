@@ -55,7 +55,9 @@ export default function Index() {
       {/* Search */}
       <View className="mt-8">
         <SearchInput
-        onpress={() => router.push('/search')}
+        onpress={() => {
+          router.push("/search");
+        }}
         />
       </View>
 
