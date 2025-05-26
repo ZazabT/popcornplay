@@ -12,7 +12,7 @@ const categories = ['All', 'Action', 'Comedy', 'Drama', 'Horror'];
 
 export default function Index() {
   const { data: movies, loading: moviesLoading, error: moviesError } = useFetch(() => fetchMovies({ query: "" }));
-  const { data: tvShows, loading: tvLoading } = useFetch(() => fetchTvShows());
+  const { data: tvShows, loading: tvLoading } = useFetch(() => fetchTvShows({ query: "" }));
 
   const [showAllMovies, setShowAllMovies] = useState(false);
   const [showAllTv, setShowAllTv] = useState(false);
