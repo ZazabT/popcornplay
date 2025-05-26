@@ -26,4 +26,16 @@ export const fetchMovies = async ({ query }: { query: string }) => {
     const data = await response.json();
     return data.results;
   };
+
+export const fetchTvShows = async () => {
+   const endPoint = `${apiConfig.BASE_URL}/discover/tv?sort_by=popularity.desc`;
+   const response = await fetch(endPoint, {
+    headers: apiConfig.headers,
+   });
+   if (!response.ok) {
+    throw new Error(`Failed to fetch TV shows: ${response.status} ${response.statusText}`);
+   }
+   const data = await response.json();
+   return data.results;
+};
   

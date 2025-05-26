@@ -33,7 +33,7 @@ const MovieCard = ({
         />
 
         {/* Overlay for better text visibility */}
-        <View className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-xl rounded-b-2xl p-2">
+        <View className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-xl p-2">
           <Text className="text-white text-xs font-semibold" numberOfLines={1}>
             {title}
           </Text>

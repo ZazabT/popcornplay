@@ -16,7 +16,7 @@ const SearchInput = () => {
 
       {/* Input */}
       <TextInput
-        className="w-full h-[60px] bg-[rgba(255,255,255,0.1)] rounded-2xl pl-12 pr-12 text-base text-white"
+        className="w-full h-[60px] bg-[rgba(255,255,255,0.2)] rounded-xl pl-12 pr-12 text-base text-white"
         placeholder="Search movies, TV shows..."
         placeholderTextColor="rgba(255,255,255,0.5)"
         selectionColor="#fff"
